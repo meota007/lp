@@ -17,6 +17,7 @@ lp/
 │   ├── index.html
 │   └── assets/
 ├── atualizar.sh
+├── index.html           <- home com links para as 3 LPs
 └── README.md
 ```
 
@@ -60,10 +61,37 @@ Atualize o repo meota007/lp com o conteudo atual dos repositorios:
 - https://github.com/meota007/lp-ebook-crianca-interior -> pasta ebook-crianca-interior/
 
 Regras:
-1. Nao apague o README.md nem o atualizar.sh da raiz.
+1. Nao apague o README.md, o index.html da raiz nem o atualizar.sh.
 2. Copie todos os arquivos de cada repo de origem para a pasta correspondente, excluindo a pasta .git.
 3. Use --delete / limpeza para que arquivos removidos na origem saiam do lp tambem.
 4. Commit com mensagem "Sincroniza LPs com repos de origem em <data>" e push para main.
+```
+
+## Prompt quando o repo lp ja existe / ja esta clonado
+
+Use este quando o `lp` ja existe no GitHub e voce so quer atualizar a partir de um clone local:
+
+```
+O repo meota007/lp ja existe e ja esta clonado aqui na maquina.
+
+1. Entre na pasta do clone do lp e rode: git pull origin main
+2. Atualize cada subpasta com o conteudo atual dos repos de origem:
+- https://github.com/meota007/lp-feridas-emocionais -> pasta feridas-emocionais/
+- https://github.com/meota007/lp-refem-das-emocoes -> pasta refem-das-emocoes/
+- https://github.com/meota007/lp-ebook-crianca-interior -> pasta ebook-crianca-interior/
+3. Regras:
+- Nao apague o README.md, o index.html da raiz nem o atualizar.sh.
+- Exclua a pasta .git das origens na copia.
+- Espelhe as pastas (arquivo removido na origem sai do lp tambem).
+4. Depois rode: git add -A, commit "Sincroniza LPs com repos de origem em <data>" e push para main.
+5. Se nao houver mudanca (git diff --cached --quiet), nao commite e avise "lp ja esta sincronizado".
+```
+
+Se ainda nao clonou, clone primeiro e depois siga o prompt acima:
+
+```bash
+git clone git@github.com:meota007/lp.git
+cd lp
 ```
 
 ## Script via SSH para atualizar (atualizar.sh)
