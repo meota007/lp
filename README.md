@@ -67,29 +67,33 @@ Regras:
 4. Commit com mensagem "Sincroniza LPs com repos de origem em <data>" e push para main.
 ```
 
-## Prompt quando o repo lp ja existe (sempre clonar antes de atualizar)
+## Prompt quando o repo lp ja existe (garantir local atualizado antes de enviar)
 
-Objetivo: garantir que voce parte sempre da versao mais atual do `lp`. Apaga clone antigo (se houver), clona do zero e so depois sincroniza como no reuso.
+Objetivo: antes de enviar qualquer atualizacao para o `lp`, garantir que o clone local esta com a versao mais atual. So clona se ainda nao existir.
 
 ```
-O repo meota007/lp ja existe no GitHub. Antes de atualizar, clone do zero para garantir a versao mais atual:
+O repo meota007/lp ja existe no GitHub. Antes de atualizar, garanta que o local esta atualizado:
 
-1. Apague qualquer clone antigo do lp nesta maquina (se existir) e clone novamente:
+1. Se a pasta do clone do lp JA existir nesta maquina:
+cd lp
+git pull origin main
+
+2. Se ainda NAO existir, clone agora:
 git clone git@github.com:meota007/lp.git
 cd lp
 (ou: gh repo clone meota007/lp lp)
 
-2. Com o clone novo em maos, atualize com o conteudo atual dos repositorios:
+3. Com o local atualizado, sincronize com o conteudo atual dos repositorios:
 - https://github.com/meota007/lp-feridas-emocionais -> pasta feridas-emocionais/
 - https://github.com/meota007/lp-refem-das-emocoes -> pasta refem-das-emocoes/
 - https://github.com/meota007/lp-ebook-crianca-interior -> pasta ebook-crianca-interior/
 
-3. Regras:
+4. Regras:
 - Nao apague o README.md, o index.html da raiz nem o atualizar.sh.
 - Exclua a pasta .git das origens na copia.
 - Espelhe as pastas (arquivo removido na origem sai do lp tambem).
-4. Depois rode: git add -A, commit "Sincroniza LPs com repos de origem em <data>" e push para main.
-5. Se nao houver mudanca (git diff --cached --quiet), nao commite e avise "lp ja esta sincronizado".
+5. Depois rode: git add -A, commit "Sincroniza LPs com repos de origem em <data>" e push para main.
+6. Se nao houver mudanca (git diff --cached --quiet), nao commite e avise "lp ja esta sincronizado".
 ```
 
 ## Script via SSH para atualizar (atualizar.sh)
