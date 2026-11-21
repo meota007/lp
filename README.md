@@ -67,31 +67,29 @@ Regras:
 4. Commit com mensagem "Sincroniza LPs com repos de origem em <data>" e push para main.
 ```
 
-## Prompt quando o repo lp ja existe / ja esta clonado
+## Prompt quando o repo lp ja existe (sempre clonar antes de atualizar)
 
-Use este quando o `lp` ja existe no GitHub e voce so quer atualizar a partir de um clone local:
+Objetivo: garantir que voce parte sempre da versao mais atual do `lp`. Apaga clone antigo (se houver), clona do zero e so depois sincroniza como no reuso.
 
 ```
-O repo meota007/lp ja existe e ja esta clonado aqui na maquina.
+O repo meota007/lp ja existe no GitHub. Antes de atualizar, clone do zero para garantir a versao mais atual:
 
-1. Entre na pasta do clone do lp e rode: git pull origin main
-2. Atualize cada subpasta com o conteudo atual dos repos de origem:
+1. Apague qualquer clone antigo do lp nesta maquina (se existir) e clone novamente:
+git clone git@github.com:meota007/lp.git
+cd lp
+(ou: gh repo clone meota007/lp lp)
+
+2. Com o clone novo em maos, atualize com o conteudo atual dos repositorios:
 - https://github.com/meota007/lp-feridas-emocionais -> pasta feridas-emocionais/
 - https://github.com/meota007/lp-refem-das-emocoes -> pasta refem-das-emocoes/
 - https://github.com/meota007/lp-ebook-crianca-interior -> pasta ebook-crianca-interior/
+
 3. Regras:
 - Nao apague o README.md, o index.html da raiz nem o atualizar.sh.
 - Exclua a pasta .git das origens na copia.
 - Espelhe as pastas (arquivo removido na origem sai do lp tambem).
 4. Depois rode: git add -A, commit "Sincroniza LPs com repos de origem em <data>" e push para main.
 5. Se nao houver mudanca (git diff --cached --quiet), nao commite e avise "lp ja esta sincronizado".
-```
-
-Se ainda nao clonou, clone primeiro e depois siga o prompt acima:
-
-```bash
-git clone git@github.com:meota007/lp.git
-cd lp
 ```
 
 ## Script via SSH para atualizar (atualizar.sh)
